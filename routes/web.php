@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\SessaoController;
 
 
 Route::get('/', function () {
@@ -37,6 +38,13 @@ Route::middleware(['admin'])->group(function () {
 Route::post('/upload', [FileUploadController::class, 'upload']);
 Route::get('/store', function () {
     return view('store');
+});
+
+Route::prefix('sessao')->group(function () {
+    route::get('/criar', [SessaoController::class, 'criar']);
+    route::get('/ler', [SessaoController::class, 'ler']);
+    route::get('/verifica', [SessaoController::class, 'verifica']);
+    route::get('/remove', [SessaoController::class, 'remove']);
 });
 
 require __DIR__.'/auth.php';
